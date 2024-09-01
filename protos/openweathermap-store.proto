@@ -33,11 +33,12 @@ message Current {
 }
 
 message GetWeatherDataResponse {
-  float Lat = 1;
-  float Lon = 2;
-  string Timezone = 3;
-  int32 TimezoneOffset = 4;
-  Current Current = 5;
+  int64 LastUpdated = 1;
+  float Lat = 2;
+  float Lon = 3;
+  string Timezone = 4;
+  int32 TimezoneOffset = 5;
+  Current Current = 6;
 }
 
 service OpenWeatherMapStoreServer {
