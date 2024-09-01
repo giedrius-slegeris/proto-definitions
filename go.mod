@@ -1,4 +1,4 @@
-module giedrius-slegeris/proto-definitions
+module github.com/giedrius-slegeris/proto-definitions
 
 go 1.23.0
 
