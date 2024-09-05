@@ -8,37 +8,110 @@ message GetWeatherDataRequest {
 }
 
 message Weather {
-  int32 ID = 1;
-  string Main = 2;
-  string Description = 3;
-  string Icon = 4;
+  int32 ID = 1 [json_name = "id"];
+  string Main = 2 [json_name = "main"];
+  string Description = 3 [json_name = "description"];
+  string Icon = 4 [json_name = "icon"];
 }
 
 message Current {
-  int32 Dt = 1;
-  int32 Sunrise = 2;
-  int32 Sunset = 3;
-  float Temp = 4;
-  float FeelsLike = 5;
-  int32 Pressure = 6;
-  int32 Humidity = 7;
-  float DewPoint = 8;
-  float Uvi = 9;
-  int32 Clouds = 10;
-  int32 Visibility = 11;
-  float WindSpeed = 12;
-  int32 WindDeg = 13;
-  float WindGust = 14;
-  repeated Weather Weather = 15;
+  int32 Dt = 1 [json_name = "dt"];
+  int32 Sunrise = 2 [json_name = "sunrise"];
+  int32 Sunset = 3 [json_name = "sunset"];
+  float Temp = 4 [json_name = "temp"];
+  float FeelsLike = 5 [json_name = "feels_like"];
+  int32 Pressure = 6 [json_name = "pressure"];
+  int32 Humidity = 7 [json_name = "humidity"];
+  float DewPoint = 8 [json_name = "dew_point"];
+  float Uvi = 9 [json_name = "uvi"];
+  int32 Clouds = 10 [json_name = "clouds"];
+  int32 Visibility = 11 [json_name = "visibility"];
+  float WindSpeed = 12 [json_name = "wind_speed"];
+  int32 WindDeg = 13 [json_name = "wind_deg"];
+  float WindGust = 14 [json_name = "wind_gust"];
+  repeated Weather Weather = 15 [json_name = "weather"];
+}
+
+message Minutely {
+  int32 Dt = 1 [json_name = "dt"];
+  float Precipitation = 2 [json_name = "precipitation"];
+}
+
+message Hourly {
+  int32 Dt = 1 [json_name = "dt"];
+  float Temp = 2 [json_name = "temp"];
+  float FeelsLike = 3  [json_name = "feels_like"];
+  int32 Pressure = 4 [json_name = "pressure"];
+  int32 Humidity = 5 [json_name = "humidity"];
+  float DewPoint = 6 [json_name = "dew_point"];
+  float Uvi = 7 [json_name = "uvi"];
+  int32 Clouds = 8 [json_name = "clouds"];
+  int32 Visibility = 9 [json_name = "visibility"];
+  float WindSpeed = 10 [json_name = "wind_speed"];
+  int32 WindDeg = 11 [json_name = "wind_deg"];
+  float WindGust = 12 [json_name = "wind_gust"];
+  repeated Weather Weather = 13 [json_name = "weather"];
+  float Pop = 14 [json_name = "pop"];
+}
+
+message Daily {
+  int32 Dt = 1 [json_name = "dt"];
+  int32 Sunrise = 2 [json_name = "sunrise"];
+  int32 Sunset = 3 [json_name = "sunset"];
+  int32 Moonrise = 4 [json_name = "moonrise"];
+  int32 Moonset = 5 [json_name = "moonset"];
+  float MoonPhase = 6 [json_name = "moon_phase"];
+  Temp Temp = 7 [json_name = "temp"];
+  FeelsLike FeelsLike = 8 [json_name = "feels_like"];
+  int32 Pressure = 9 [json_name = "pressure"];
+  int32 Humidity = 10 [json_name = "humidity"];
+  float DewPoint = 11 [json_name = "dew_point"];
+  float WindSpeed = 12 [json_name = "wind_speed"];
+  int32 WindDeg = 13 [json_name = "wind_deg"];
+  float WindGust = 14 [json_name = "wind_gust"];
+  Weather Weather = 15 [json_name = "weather"];
+  int32 Clouds = 16 [json_name = "clouds"];
+  float Pop = 17 [json_name = "pop"];
+  float Rain = 18 [json_name = "rain"];
+  float Uvi = 19 [json_name = "uvi"];
+}
+
+message Temp {
+  float Day = 1 [json_name = "day"];
+  float Min = 2 [json_name = "min"];
+  float Max = 3 [json_name = "max"];
+  float Night = 4 [json_name = "night"];
+  float Eve = 5 [json_name = "eve"];
+  float Morn = 6 [json_name = "morn"];
+}
+
+message FeelsLike {
+  float Day = 1 [json_name = "day"];
+  float Night = 2 [json_name = "night"];
+  float Eve = 3 [json_name = "eve"];
+  float Morn = 4 [json_name = "morn"];
+}
+
+message Alert {
+  string SenderName = 1 [json_name = "sender_name"];
+  string Event = 2 [json_name = "event"];
+  int64 Start = 3 [json_name = "start"];
+  int64 End = 4 [json_name = "end"];
+  string Description = 5 [json_name = "description"];
+  repeated string Tags = 6 [json_name  = "tags"];
 }
 
 message GetWeatherDataResponse {
   int64 LastUpdated = 1;
-  float Lat = 2;
-  float Lon = 3;
-  string Timezone = 4;
-  int32 TimezoneOffset = 5;
-  Current Current = 6;
+  float Lat = 2 [json_name = "lat"];
+  float Lon = 3 [json_name = "lon"];
+  string Timezone = 4 [json_name = "timezone"];
+  int32 TimezoneOffset = 5 [json_name = "timezone_offset"];
+  Current Current = 6 [json_name = "current"];
+  repeated Minutely Minutely = 7 [json_name = "minutely"];
+  repeated Hourly Hourly = 8 [json_name = "hourly"];
+  repeated Daily Daily = 9 [json_name = "daily"];
+  repeated Alert Alerts = 10 [json_name = "alerts"];
 }
 
 service OpenWeatherMapStoreServer {
