@@ -69,7 +69,7 @@ message Daily {
   float WindSpeed = 12 [json_name = "wind_speed"];
   int32 WindDeg = 13 [json_name = "wind_deg"];
   float WindGust = 14 [json_name = "wind_gust"];
-  Weather Weather = 15 [json_name = "weather"];
+  repeated Weather Weather = 15 [json_name = "weather"];
   int32 Clouds = 16 [json_name = "clouds"];
   float Pop = 17 [json_name = "pop"];
   float Rain = 18 [json_name = "rain"];
