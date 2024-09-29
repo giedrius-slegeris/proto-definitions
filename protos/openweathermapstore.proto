@@ -1,7 +1,7 @@
 syntax = "proto3";
 
-package openweathermap_store;
-option go_package = "giedrius-slegeris/openweathermap-store;openweathermap_store";
+package openweathermapstore;
+option go_package = "giedrius-slegeris/openweathermap-store;openweathermapstore";
 
 message GetWeatherDataRequest {
   // Possibly add location to requests if extending server store to query for more locations

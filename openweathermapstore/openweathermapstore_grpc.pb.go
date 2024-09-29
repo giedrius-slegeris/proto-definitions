@@ -2,9 +2,9 @@
 // versions:
 // - protoc-gen-go-grpc v1.5.1
 // - protoc             v3.21.12
-// source: protos/openweathermap-store.proto
+// source: protos/openweathermapstore.proto
 
-package openweathermap_store
+package openweathermapstore
 
 import (
 	context "context"
@@ -19,7 +19,7 @@ import (
 const _ = grpc.SupportPackageIsVersion9
 
 const (
-	OpenWeatherMapStoreServer_GetWeatherData_FullMethodName = "/openweathermap_store.OpenWeatherMapStoreServer/GetWeatherData"
+	OpenWeatherMapStoreServer_GetWeatherData_FullMethodName = "/openweathermapstore.OpenWeatherMapStoreServer/GetWeatherData"
 )
 
 // OpenWeatherMapStoreServerClient is the client API for OpenWeatherMapStoreServer service.
@@ -109,7 +109,7 @@ func _OpenWeatherMapStoreServer_GetWeatherData_Handler(srv interface{}, ctx cont
 // It's only intended for direct use with grpc.RegisterService,
 // and not to be introspected or modified (even as a copy)
 var OpenWeatherMapStoreServer_ServiceDesc = grpc.ServiceDesc{
-	ServiceName: "openweathermap_store.OpenWeatherMapStoreServer",
+	ServiceName: "openweathermapstore.OpenWeatherMapStoreServer",
 	HandlerType: (*OpenWeatherMapStoreServerServer)(nil),
 	Methods: []grpc.MethodDesc{
 		{
@@ -118,5 +118,5 @@ var OpenWeatherMapStoreServer_ServiceDesc = grpc.ServiceDesc{
 		},
 	},
 	Streams:  []grpc.StreamDesc{},
-	Metadata: "protos/openweathermap-store.proto",
+	Metadata: "protos/openweathermapstore.proto",
 }
