@@ -1,2 +1,2 @@
 # proto-definitions
-Proto definitions for applications
+Proto definitions API
