@@ -1,0 +1,48 @@
+services:
+  protoc:
+    build:
+      context: .
+      dockerfile: Dockerfile
+      # Use the host network namespace so the build inherits the host's
+      # resolver. Without it, hosts whose /etc/resolv.conf points at a
+      # loopback stub (systemd-resolved) leave the build unable to resolve
+      # anything and `apk add` fails.
+      network: host
+    image: proto-definitions-compiler:local
+    # Same reason as build.network above: the container needs working DNS to
+    # reach proxy.golang.org and github.com. Drop this line if your Docker
+    # daemon already hands containers a usable resolver.
+    network_mode: host
+    env_file:
+      - path: .env
+        required: false
+    environment:
+      # Where the definitions live and where the generated packages land.
+      PROTO_DIR: /workspace/protos
+      OUT_DIR: /workspace/build
+
+      # Target packages.
+      GO_MODULE: ${GO_MODULE:-github.com/giedrius-slegeris/proto-definitions-go}
+      GO_REPO: ${GO_REPO:-github.com/giedrius-slegeris/proto-definitions-go}
+      PHP_PACKAGE: ${PHP_PACKAGE:-giedrius-slegeris/proto-definitions-php}
+      PHP_REPO: ${PHP_REPO:-github.com/giedrius-slegeris/proto-definitions-php}
+      TARGET_BRANCH: ${TARGET_BRANCH:-main}
+
+      # Publishing.
+      GITHUB_TOKEN: ${GITHUB_TOKEN:-}
+      GIT_USER_NAME: ${GIT_USER_NAME:-proto-definitions bot}
+      GIT_USER_EMAIL: ${GIT_USER_EMAIL:-proto-definitions-bot@users.noreply.github.com}
+      COMMIT_MESSAGE: ${COMMIT_MESSAGE:-}
+      RELEASE_TAG: ${RELEASE_TAG:-}
+      DRY_RUN: ${DRY_RUN:-0}
+
+      # Passed by the Makefile so generated files are not left root-owned.
+      HOST_UID: ${HOST_UID:-}
+      HOST_GID: ${HOST_GID:-}
+      SOURCE_SHA: ${SOURCE_SHA:-}
+    volumes:
+      - .:/workspace
+      - go-mod-cache:/go/pkg/mod
+
+volumes:
+  go-mod-cache:

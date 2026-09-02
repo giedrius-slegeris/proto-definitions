@@ -1,0 +1,8 @@
+# Generated packages
+/build/
+
+# Local configuration and secrets
+.env
+
+# IDE
+/.idea/
